@@ -17,11 +17,11 @@
 # The JSON parts of this (which will be reused by any new interface)
 # now live in a different module.
 #
-from .client import *
-from .misc import iso_time
+from gpspy3.misc import iso_time
+from gpspy3.client import *
+from gpspy3 import logger
 
 NaN = float('nan')
-
 
 def isnan(x):
     return str(x) == 'nan'
@@ -286,7 +286,7 @@ class GPS(GPSCommon, GPSData, GPSJson):
             self.utc = default("time", None, TIME_SET)
             if self.utc is not None:
                 # Time can be either Unix time as a float or an ISO8601 string
-                print("GPS: received fix.time type={}".format(type(self.fix.time)))     # TODO: Remove after verified
+                logger.info("GPS: received fix.time type={}".format(type(self.fix.time)))     # TODO: Remove after verified
                 if isinstance(self.fix.time, float):    # changed from type(self.fix.time) == type(0.0):
                     self.fix.time = self.utc
                 elif isinstance(self.fix.time, bytes):  # added
@@ -374,7 +374,7 @@ if __name__ == '__main__':
         if switch == '-v':
             verbose = True
     if len(arguments) > 2:
-        print('Usage: gps.py [-v] [host [port]]')
+        logger.error('Usage: gps.py [-v] [host [port]]')
         sys.exit(1)
 
     opts = {"verbose": verbose}

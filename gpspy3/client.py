@@ -5,6 +5,8 @@ import time
 import socket
 import sys
 import select    #, exceptions
+from gpspy3 import logger
+
 
 if sys.hexversion >= 0x2060000:
     import json			        # For Python 2.6
@@ -86,7 +88,7 @@ class GPSCommon:
         if eol == -1:
             # ensure that data is available on the socket
             if not self.waiting(timeout=1):
-                print("gps.client: no data available on socket")
+                logger.warn("gps.client: no data available on socket")
                 return -1
             frag = self.sock.recv(4096)
             self.linebuffer += frag.decode()    # convert to str
