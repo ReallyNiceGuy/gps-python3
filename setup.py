@@ -1,10 +1,5 @@
 import os
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
-from pip.download import PipSession
-
-install_reqs = parse_requirements("requirements.txt", session=PipSession())
-reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
     name = "gpspy3",
@@ -16,6 +11,6 @@ setup(
     license = "",
     keywords = "",
     url = "",
-    install_requires=reqs
+    install_requires=[]
 )
 
