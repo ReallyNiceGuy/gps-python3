@@ -335,7 +335,7 @@ class GPS(GPSCommon, GPSData, GPSJson):
             self.valid |= PACKET_SET
         return 0
 
-    def next(self):
+    def __next__(self):
         if self.read() == -1:
             raise StopIteration
         if hasattr(self, "data"):
