@@ -286,7 +286,6 @@ class GPS(GPSCommon, GPSData, GPSJson):
             self.utc = default("time", None, TIME_SET)
             if self.utc is not None:
                 # Time can be either Unix time as a float or an ISO8601 string
-                logger.info("GPS: received fix.time type={}".format(type(self.fix.time)))     # TODO: Remove after verified
                 if isinstance(self.fix.time, float):    # changed from type(self.fix.time) == type(0.0):
                     self.fix.time = self.utc
                 elif isinstance(self.fix.time, bytes):  # added
