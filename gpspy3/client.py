@@ -88,7 +88,7 @@ class GPSCommon:
         if eol == -1:
             # ensure that data is available on the socket
             if not self.waiting(timeout=1):
-                logger.warn("gps.client: no data available on socket")
+                # logger.warn("gps.client: no data available on socket")
                 return -1
             frag = self.sock.recv(4096)
             self.linebuffer += frag.decode()    # convert to str
