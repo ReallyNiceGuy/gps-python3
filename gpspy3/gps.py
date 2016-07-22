@@ -363,6 +363,12 @@ class GPS(GPSCommon, GPSData, GPSJson):
             else:
                 GPSJson.stream(self, flags, devpath)
 
+#Compatibility with older version:
+gps = GPS
+gpsfix = GPSFix
+gpsdata = GPSData
+gps.next = GPS.__next__
+
 if __name__ == '__main__':
     import getopt
     import sys
